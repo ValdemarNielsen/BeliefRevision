@@ -1,34 +1,31 @@
 from typing import List
-
 from sympy import *
-from sympy.logic import POSform
 
-p, q, r, s, t = symbols('p, q, r, s, t')
+x, y = symbols('x,y')
 
+class BeliefRevision():
+    def init(self):
+        self.knowledgeBase = []
+        self.beliefBase = []
 
-def check_logic():
-    print("hey")
+    def check_logic(self, var, value):
+        # assume var is always true for now
+        return True
 
+    def belief_base(self):
+        print("hello")
 
-def beliefBase():
-    print("hello")
+    def knowledge_base(self) -> List:
+        knowledgeBase = []
+        var = input("Enter a variable: ")
+        value = input("Enter a value: ")
+        knowledgeBase.append(var)
+        knowledgeBase.append(value)
 
+        if self.check_logic(var, value):
+            print("The variable is true")
 
-# Knowledge Base: p, q, r and more
-# Define p, q, r and their values and "beliefs"
-# Update the rest fo the knowledge base based on the new values and revision
-# Start of by an empty knowledge base which is updated with the new values based on user input
+        return knowledgeBase
 
-def knowledgeBase() -> List:
-    input1 = input()
-    print(input1)
-    knowledgeBase = []
-    knowledgeBase.append("p")
-    knowledgeBase.append("q")
-    knowledgeBase.append("r")
-    return knowledgeBase
-
-def runitall():
-    print("hello")
-
-knowledgeBase()
+if __name__ == '__main__':
+    BeliefRevision().knowledge_base()
