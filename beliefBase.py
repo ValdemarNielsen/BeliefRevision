@@ -1,0 +1,8 @@
+
+
+#
+class beliefBase():
+
+    print("hello")
+
+
