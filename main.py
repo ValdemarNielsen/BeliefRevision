@@ -1,3 +1,5 @@
+from typing import List
+
 from sympy import *
 x, y = symbols('x,y')
 
@@ -5,18 +7,6 @@ class BeliefRevision():
     def __init__(self, master=None):
 
         print("hello")
-        self.master = master
-        self.master.title("Belief Revision")
-        self.master.geometry("500x500")
-        self.master.resizable(0, 0)
-        self.master.configure(background='white')
-        self.master.grid_rowconfigure(0, weight=1)
-        self.master.grid_columnconfigure(0, weight=1)
-        self.frame.grid(row=0, column=0, sticky="nsew")
-        self.frame.grid_rowconfigure(0, weight=1)
-        self.frame.grid_columnconfigure(0, weight=1)
-        self.frame.grid_propagate(False)
-        self.createWidgets()
 
 
 
@@ -26,7 +16,15 @@ class BeliefRevision():
     def beliefBase(self):
         print("hello")
 
-#Run check_logic
-if __name__ == '__main__':
-    app = BeliefRevision(root)
-    root.mainloop()
+
+#Knowledge Base: P, Q, R and more
+#Define P, Q, R and their values and "beliefs"
+#Update the rest fo the knowledge base based on the new values and revision
+#Start of by an empty knowledge base which is updated with the new values based on user input
+
+    def knowledgeBase(self) -> List:
+        knowledgeBase = []
+        knowledgeBase.append("P")
+        knowledgeBase.append("Q")
+        knowledgeBase.append("R")
+        return knowledgeBase
