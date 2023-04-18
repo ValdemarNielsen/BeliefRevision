@@ -1,10 +1,10 @@
 from sympy import *
+from sympy.logic import POSform
 
-x, y = symbols('x,y')
+p, q, s, t = symbols('p, q, s, t')
 
 class beliefRevision():
     def __init__(self, master=None):
-
         print("hello")
 
     def check_logic(self):
@@ -13,4 +13,8 @@ class beliefRevision():
     def beliefBase(self):
         print("hello")
 
+    def knowledgeBase(self):
 
+        print("howdy")
+
+app = beliefRevision(master=root)
