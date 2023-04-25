@@ -3,12 +3,19 @@ from sympy import *
 
 x, y = symbols('x,y')
 
+
 def check_logic(var, value):
     # assume var is always true for now
     return True
 
+
 def belief_base():
     print("hello")
+
+
+def check_syntax(var):
+    logic = ["&", "~", "|", "->", "<->", "(", ")"]
+
 
 def knowledge_base() -> List:
     knowledgeBase = []
@@ -22,4 +29,10 @@ def knowledge_base() -> List:
 
     return knowledgeBase
 
-knowledge_base()
+
+def run():
+    while true:
+        knowledge_base()
+
+
+run()
