@@ -1,49 +1,48 @@
 from sympy import *
+from itertools import combinations
 from sympy.logic.boolalg import to_cnf, Not, And, Or
 
 
-def belief_base():
-    # Initialize empty beliefs in an array
-    beliefs = []
+def belief_Revision():
 
-    # Infinite loop to keep prompting the user to insert new beliefs to make belief revision.
+    beliefBase = []
+
     while True:
-        # Prompt the user to enter a belief
-        belief_str = input("Enter a belief (or 'done' to finish): ")
 
-        # If the user types "done" in console the program will stop running
-        if belief_str == "done":
+        logic_Input = input("Enter a belief (or 'done' to finish): ")
+
+        if logic_Input == "done":
             break
 
-        # Parse the belief expression into a sympy expression
-        belief = sympify(belief_str)
+        # Translate the input into a sympy expression
+        belief = sympify(logic_Input)
 
-        # Checking for contradictions in the belief base and swap the conflicting beliefs with the new belief
-        conflicting_beliefs = []
-        for c in beliefs:
-            if simplify(belief & c) == false:
-                conflicting_beliefs.append(c)
-        if conflicting_beliefs:
-            print("Contradiction found. The new belief contradicts the following beliefbase:", conflicting_beliefs)
-            beliefs = [c if c not in conflicting_beliefs else belief for c in beliefs]
-            continue
+        # Contradiction-check in the belief base
+        conflict_combination = []
+        for i in range(1, len(beliefBase) + 1):
+            for c in combinations(beliefBase, i):
+                if simplify(belief & And(*c)) == false:
+                    conflict_combination.append(c)
 
-        # This condition will check if there are any duplicate beliefs in the belief base
-        if belief in beliefs:
+        # Deletion of conflicting combinations
+        for c in conflict_combination:
+            if set(c).issubset(set(beliefBase)):
+                beliefBase = [b for b in beliefBase if b not in c]
+                print(f"Removing beliefs {c} due to contradiction with {belief}")
+
+        # Duplicate check
+        if belief in beliefBase:
             print("Duplicate found. Please try again.")
             continue
 
-        # Add the belief to the list of beliefs
-        beliefs.append(belief)
+        beliefBase.append(belief)
 
-        # Print newest belief
-        print("Current beliefs:", beliefs)
+        print("Current beliefs:", beliefBase)
 
-    # Print the final CNF in belief form
-    cnf = simplify(And(*beliefs))
-    beliefs = list(cnf.args)
-    print("The final CNF for belief base:", beliefs)
+    cnf = simplify(And(*beliefBase))
+    beliefBase = list(cnf.args)
+    print("The final CNF for belief base:", beliefBase)
 
 
 if __name__ == "__main__":
-    belief_base()
+    belief_Revision()
