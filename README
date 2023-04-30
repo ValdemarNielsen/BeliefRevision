@@ -1,0 +1,11 @@
+Press start
+
+Write an input
+
+We are using the following syntax to describe and update the belief base:
+“And”, “or”, “not”, “implies”, is described by “&”, “|”, “~”, “>>”.
+The operator equivalent is also included, however it has to be written in a different syntax than usual.
+An example of this is the following: ( a >> b ) & ( b >> a).
+
+
+You can also input “Not (A)” and it will transform it to “[~A]” instead - using correct syntax.
